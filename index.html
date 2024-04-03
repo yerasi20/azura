@@ -66,109 +66,110 @@
     <div id="question" class="question"></div>
     <div class="options" id="options"></div>
     <div id="timer">Time remaining: <span id="time">15</span> seconds</div>
+    <button id="nextButton">Next</button>
     <div id="score"></div>
 </div>
 <script>
     const quizData = [
         {
-            question: "1. Which is the smallest city in the world?",
-            options: ["Vatican City", "Monaco", "Nauru", "Tuvalu"],
-            answer: "Vatican City"
-        },
-        {
-            question: "2. Who is the founder of Microsoft?",
-            options: ["Steve Jobs", "Elon Musk", "Bill Gates", "Jeff Bezos"],
-            answer: "Bill Gates"
-        },
-        {
-            question: "3. What is the capital of Australia?",
-            options: ["Sydney", "Canberra", "Melbourne", "Perth"],
+            question: "1. What is the capital city of Australia?",
+            options: ["Sydney","Melbourne", ,"Canberra"," Brisbane"],
             answer: "Canberra"
         },
         {
-            question: "4. What is the largest country by land area?",
-            options: ["Russia", "Canada", "China", "United States"],
-            answer: "Russia"
+            question: "2. Which of the following countries does not border the Mediterranean Sea?",
+            options: ["Italy","Greece","Romania","Spain"],
+            answer: "Romania"
         },
         {
-            question: "5. What is the currency of Japan?",
-            options: ["Dollar", "Euro", "Yen", "Pound"],
-            answer: "Yen"
+            question: "3. Who directed the movie Inception? ",
+            options: [" Christopher Nolan","Steven Spielberg","Quentin Tarantino","Martin Scorsese"],
+            answer: "Christopher Nolan"
         },
         {
-            question: "6. Who is the current CEO of Google?",
-            options: ["Mark Zuckerberg", "Sundar Pichai", "Satya Nadella", "Tim Cook"],
-            answer: "Sundar Pichai"
+            question: "4. Which planet is known as the Red Planet?",
+            options: ["Venus","Mars","Jupiter","Saturn"],
+            answer: "Mars"
         },
         {
-            question: "7. What is the longest-running scripted primetime TV show in the US?",
-            options: ["The Simpsons", "Law & Order", "Gunsmoke", "Lassie"],
-            answer: "The Simpsons"
+            question: "5. Who played the role of Neo in the movie The Matrix?",
+            options: ["Keanu Reeves","Brad Pitt","Leonardo DiCaprio","Tom Cruise"],
+            answer: "Australia"
         },
         {
-            question: "8. Who wrote the “Game of Thrones” book series?",
-            options: ["J.K. Rowling", "George R. R. Martin", "J.R.R. Tolkien", "Stephen King"],
-            answer: "George R. R. Martin"
+            question: "6. Which famous scientist developed the theory of relativity?",
+            options: ["Isaac Newton","Albert Einstein","Galileo Galilei","Nikola Tesla"],
+            answer: "Albert Einstein"
         },
         {
-            question: "9. Who played the role of Iron Man in the Marvel Cinematic Universe?",
-            options: ["Robert De Niro", "Robert Pattinson", "Robert Redford", "Robert Downey Jr"],
-            answer: "Robert Downey Jr"
+            question: "7.  The Great Barrier Reef is located off the coast of which country?",
+            options: ["Brazil","Australia","Mexico","Indonesia"],
+            answer: "Australia"
         },
         {
-            question: "10. Who played the character of Harry Potter in the movie series?",
-            options: ["Rupert Grint", "Emma Watson", "Daniel Radcliffe", "Tom Felton"],
-            answer: "Daniel Radcliffe"
+            question: "8. What is the largest desert in the world?",
+            options: ["Sahara Desert","Gobi Desert","Antarctic Desert","Arabian Desert"],
+            answer: "Antarctic Desert"
         },
         {
-            question: "11. What is the square root of 256?",
-            options: ["13", "16", "14", "17"],
-            answer: "16"
+            question: "9.  Which movie won the Academy Award for Best Picture in 2020?",
+            options: ["Parasite","1917","Joker","Green Book"],
+            answer: "Parasite"
         },
         {
-            question: "12.Who won the FIFA World Cup in 2018?",
-            options: ["Brazil", "Germany", "Argentina", "France"],
-            answer: "France"
+            question: "10.  What is the chemical symbol for gold?",
+            options: ["Ag","Au","Hg","Fe"],
+            answer: "Au"
         },
         {
-            question: "13. Who is the current captain of the Indian national football team?",
-            options: ["Sunil Chhetri", "Bhaichung Bhutia", "I. M. Vijayan", "Gurpreet Singh Sandhu"],
-            answer: "Sunil Chhetri"
+            question: "11. Which river is the longest in the world?",
+            options: ["Nile","Amazon","Mississippi","Yangtze"],
+            answer: "Nile"
         },
         {
-            question: "14. Virat Kohli made how many centuries in international cricket?",
-            options: ["76", "78", "80", "77"],
-            answer: "80"
+            question: "12. Who played the role of Captain Jack Sparrow in the Pirates of the Caribbean series?",
+            options: ["Johnny Depp","Orlando Bloom","Tom Cruise","Brad Pitt"],
+            answer: "Johnny Depp"
         },
         {
-            question: "15. What is the largest ocean on Earth?",
-            options: ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean"],
-            answer: "Pacific Ocean"
+            question: "13. What is the chemical symbol for water?",
+            options: ["O2","H2O","CO2","NaCl"],
+            answer: "H2O"
         },
         {
-            question: "16. What is the original Spanish title of the Netflix series 'Money Heist'?",
-            options: ["El Robo Perfecto (The Perfect Robbery)", "La Casa de Papel (The House of Paper)", "La Fuga Millonaria (The Million Dollar Escape)", "Los Héroes del Banco (The Bank Heroes)"],
-            answer: "La Casa de Papel (The House of Paper)"
+            question: "14. Which continent is the driest on Earth?",
+            options: ["Asia","Africa","Australia","Antarctica"],
+            answer: "Australia"
         },
         {
-            question: "17. What board game involves buying and selling properties?",
-            options: ["Scrabble", "Chess", "Monopoly", "Pictionary"],
-            answer: "Monopoly"
+            question: "15.  Who directed the movie The Shawshank Redemption?",
+            options: [" Frank Darabont","Quentin Tarantino","Martin Scorsese","Steven Spielberg"],
+            answer: " Frank Darabont"
         },
         {
-            question: "18. What song is sung by the hostages and the robbers during a tense standoff in part 4 of Money Heist?",
-            options: ["Bella Ciao", "La Macarena", "Despacito", "Canción del Heists (Heist Song)"],
-            answer: "Bella Ciao"
+            question: "16. What is the largest organ in the human body?",
+            options: ["Liver","Skin","Brain","Heart"],
+            answer: "Skin"
         },
         {
-            question: "19. Nvidia is known for its development of which technology?",
-            options: ["Cloud storage", "Social media platforms","Web browsers", " Artificial intelligence"],
-            answer:  " Artificial intelligence"
+            question: "17. Which mountain range is located between Europe and Asia?",
+            options: ["Andes","Rocky Mountains","Alps","Ural Mountains"],
+            answer: " Ural Mountains"
         },
         {
-            question:"20.What is the main river that flows through Kurnool district?",
-            options: ["Godavari River"," Krishna River","Kaveri River","Narmada River"],
-            answer:  " Krishna River"
+            question: "18. Which movie features the character Forrest Gump?",
+            options: ["Saving Private Ryan","Forrest Gump","The Green Mile","Cast Away"],
+            answer: "Forrest Gump"
+        },
+        {
+            question: "19. What is the chemical symbol for iron?",
+            options: ["Fe","Au","Pb","Ag"],
+            answer:  "Fe"
+        },
+        {
+            question:"20.Which is the largest island in the world?",
+            options: ["Madagascar","Greenland","Borneo","Java"],
+            answer:  "Greenland"
         }
 
     ];
@@ -180,7 +181,7 @@
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
     const scoreElement = document.getElementById("score");
-    
+    const nextButton = document.getElementById("nextButton");
     const timeElement = document.getElementById("time");
 
     function showQuestion() {
