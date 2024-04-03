@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?quiz');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    h1 {
+        margin-bottom: 20px;
+    }
+    .question {
+        margin-bottom: 20px;
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #timer {
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #f00;
+    }
+    #score {
+        margin-top: 20px;
+        font-size: 24px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Quiz</h1>
+    <div id="question" class="question"></div>
+    <div class="options" id="options"></div>
+    <div id="timer">Time remaining: <span id="time">15</span> seconds</div>
+    <div id="score"></div>
+</div>
+<script>
+    const quizData = [
+        {
+            question: "1. Which is the smallest city in the world?",
+            options: ["Vatican City", "Monaco", "Nauru", "Tuvalu"],
+            answer: "Vatican City"
+        },
+        {
+            question: "2. Who is the founder of Microsoft?",
+            options: ["Steve Jobs", "Elon Musk", "Bill Gates", "Jeff Bezos"],
+            answer: "Bill Gates"
+        },
+        {
+            question: "3. What is the capital of Australia?",
+            options: ["Sydney", "Canberra", "Melbourne", "Perth"],
+            answer: "Canberra"
+        },
+        {
+            question: "4. What is the largest country by land area?",
+            options: ["Russia", "Canada", "China", "United States"],
+            answer: "Russia"
+        },
+        {
+            question: "5. What is the currency of Japan?",
+            options: ["Dollar", "Euro", "Yen", "Pound"],
+            answer: "Yen"
+        },
+        {
+            question: "6. Who is the current CEO of Google?",
+            options: ["Mark Zuckerberg", "Sundar Pichai", "Satya Nadella", "Tim Cook"],
+            answer: "Sundar Pichai"
+        },
+        {
+            question: "7. What is the longest-running scripted primetime TV show in the US?",
+            options: ["The Simpsons", "Law & Order", "Gunsmoke", "Lassie"],
+            answer: "The Simpsons"
+        },
+        {
+            question: "8. Who wrote the “Game of Thrones” book series?",
+            options: ["J.K. Rowling", "George R. R. Martin", "J.R.R. Tolkien", "Stephen King"],
+            answer: "George R. R. Martin"
+        },
+        {
+            question: "9. Who played the role of Iron Man in the Marvel Cinematic Universe?",
+            options: ["Robert De Niro", "Robert Pattinson", "Robert Redford", "Robert Downey Jr"],
+            answer: "Robert Downey Jr"
+        },
+        {
+            question: "10. Who played the character of Harry Potter in the movie series?",
+            options: ["Rupert Grint", "Emma Watson", "Daniel Radcliffe", "Tom Felton"],
+            answer: "Daniel Radcliffe"
+        },
+        {
+            question: "11. What is the square root of 256?",
+            options: ["13", "16", "14", "17"],
+            answer: "16"
+        },
+        {
+            question: "12.Who won the FIFA World Cup in 2018?",
+            options: ["Brazil", "Germany", "Argentina", "France"],
+            answer: "France"
+        },
+        {
+            question: "13. Who is the current captain of the Indian national football team?",
+            options: ["Sunil Chhetri", "Bhaichung Bhutia", "I. M. Vijayan", "Gurpreet Singh Sandhu"],
+            answer: "Sunil Chhetri"
+        },
+        {
+            question: "14. Virat Kohli made how many centuries in international cricket?",
+            options: ["76", "78", "80", "77"],
+            answer: "80"
+        },
+        {
+            question: "15. What is the largest ocean on Earth?",
+            options: ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean"],
+            answer: "Pacific Ocean"
+        },
+        {
+            question: "16. What is the original Spanish title of the Netflix series 'Money Heist'?",
+            options: ["El Robo Perfecto (The Perfect Robbery)", "La Casa de Papel (The House of Paper)", "La Fuga Millonaria (The Million Dollar Escape)", "Los Héroes del Banco (The Bank Heroes)"],
+            answer: "La Casa de Papel (The House of Paper)"
+        },
+        {
+            question: "17. What board game involves buying and selling properties?",
+            options: ["Scrabble", "Chess", "Monopoly", "Pictionary"],
+            answer: "Monopoly"
+        },
+        {
+            question: "18. What song is sung by the hostages and the robbers during a tense standoff in part 4 of Money Heist?",
+            options: ["Bella Ciao", "La Macarena", "Despacito", "Canción del Heists (Heist Song)"],
+            answer: "Bella Ciao"
+        },
+        {
+            question: "19. Nvidia is known for its development of which technology?",
+            options: ["Cloud storage", "Social media platforms","Web browsers", " Artificial intelligence"],
+            answer:  " Artificial intelligence"
+        },
+        {
+            question:"20.What is the main river that flows through Kurnool district?",
+            options: ["Godavari River"," Krishna River","Kaveri River","Narmada River"],
+            answer:  " Krishna River"
+        }
+
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer;
+
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const scoreElement = document.getElementById("score");
+    
+    const timeElement = document.getElementById("time");
+
+    function showQuestion() {
+        const quizItem = quizData[currentQuestion];
+        questionElement.textContent = quizItem.question;
+        optionsElement.innerHTML = "";
+        quizItem.options.forEach((option) => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.addEventListener("click", () => {
+                if (option === quizItem.answer) {
+                    score++;
+                }
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
+                    showQuestion();
+                } else {
+                    showScore();
+                }
+                clearInterval(timer);
+                timeElement.textContent = "15";
+                startTimer();
+            });
+            optionsElement.appendChild(button);
+        });
+        clearInterval(timer);
+        timeElement.textContent = "15";
+        startTimer();
+    }
+
+    function startTimer() {
+        let timeLeft = 15;
+        timer = setInterval(() => {
+            timeLeft--;
+            timeElement.textContent = timeLeft;
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
+                    showQuestion();
+                } else {
+                    showScore();
+                }
+            }
+        }, 1000);
+    }
+
+    function showScore() {
+        const percentage = (score / quizData.length) * 100;
+        let result = "Fail";
+        if (percentage >= 65) {
+            result = "Pass";
+        }
+        questionElement.textContent = "";
+        optionsElement.innerHTML = "";
+        scoreElement.textContent = `Your score: ${score} out of ${quizData.length} (${percentage.toFixed(2)}%). Result: ${result}`;
+        nextButton.style.display = "none";
+        clearInterval(timer);
+        timeElement.style.display = "none";
+    }
+
+
+    showQuestion();
+</script>
+</body>
+</html>
